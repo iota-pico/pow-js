@@ -25,7 +25,7 @@ PearlDiver implementation in plain JavaScript.
 
 
 
-*Defined in pearlDiver/pearlDiver.ts:24*
+*Defined in [pearlDiver/pearlDiver.ts:24](https://github.com/iotaeco/iota-pico-pow-js/blob/9981ef7/src/pearlDiver/pearlDiver.ts#L24)*
 
 
 
