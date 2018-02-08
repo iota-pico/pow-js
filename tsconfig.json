@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "lib": [
+            "es2015",
+            "dom"
+        ],
+        "outDir": "dist",
+        "declaration": true,
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "strictNullChecks": false,
+        "esModuleInterop": false,
+        "stripInternal": true,
+        "experimentalDecorators": true,
+        "types": []
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
