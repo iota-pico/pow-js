@@ -1,6 +1,6 @@
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iotaeco/iota-pico-pow-nodejs/master/LICENSE) [![Build Status](https://travis-ci.org/iotaeco/iota-pico-pow-nodejs.svg?branch=master)](https://travis-ci.org/iotaeco/iota-pico-pow-nodejs) [![NSP Status](https://nodesecurity.io/orgs/iotaeco/projects/1fcb4e52-e85f-4bc9-9a9a-7523694cd3d5/badge)](https://nodesecurity.io/orgs/iotaeco/projects/1fcb4e52-e85f-4bc9-9a9a-7523694cd3d5)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iotaeco/iota-pico-pow-ja/master/LICENSE) [![Build Status](https://travis-ci.org/iotaeco/iota-pico-pow-js.svg?branch=master)](https://travis-ci.org/iotaeco/iota-pico-pow-js) [![NSP Status](https://nodesecurity.io/orgs/iotaeco/projects/20384d7e-9f31-47c3-a799-6cc0258443d1/badge)](https://nodesecurity.io/orgs/iotaeco/projects/20384d7e-9f31-47c3-a799-6cc0258443d1)
 
-# IOTA Pico Framework Proof Of Work NodeJS
+# IOTA Pico Framework Proof Of Work JavaScript
 
 ## Introduction
 
@@ -13,12 +13,12 @@ The libraries are written in TypeScript so are all strongly typed. The modules a
 ## Installation
 
 ```shell
-npm install @iota-pico/pow-nodejs
+npm install @iota-pico/pow-js
 ```
 
-## POW NodeJS
+## POW JavaScript
 
-The library contains the Ccurl proof of work algorithm for NodeJS platforms.
+The library contains the Curl proof of work algorithm for JavaScript platforms.
 
 ## Platform Abstraction Layers (PALs)
 
