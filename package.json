@@ -45,7 +45,6 @@
         "@iota-pico/core": "^0.5.3",
         "@iota-pico/crypto": "^0.5.3",
         "@iota-pico/data": "^0.5.3",
-        "BigInt": "^5.5.3",
         "big-integer": "^1.6.26"
     },
     "devDependencies": {
