@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const coreError_1 = require("@iota-pico/core/dist/error/coreError");
 const numberHelper_1 = require("@iota-pico/core/dist/helpers/numberHelper");
+const trytes_1 = require("@iota-pico/data/dist/data/trytes");
 const pearlDiver_1 = require("./pearlDiver/pearlDiver");
 /**
  * CurlProofOfWork implementation using NodeJS.
@@ -27,7 +28,10 @@ class CurlProofOfWork {
         if (!numberHelper_1.NumberHelper.isInteger(minWeightMagnitude)) {
             throw new coreError_1.CoreError("The minWeightMagnitude value is not an integer");
         }
-        return new pearlDiver_1.PearlDiver().searchWithTrytes(trytes, minWeightMagnitude);
+        const nonce = new pearlDiver_1.PearlDiver().searchWithTrytes(trytes, minWeightMagnitude);
+        const nonceString = nonce.toString();
+        const trytesString = trytes.toString();
+        return trytes_1.Trytes.create(trytesString.substr(0, trytesString.length - nonceString.length) + nonceString);
     }
 }
 exports.CurlProofOfWork = CurlProofOfWork;

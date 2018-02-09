@@ -29,6 +29,9 @@ export class CurlProofOfWork implements ICurlProofOfWork {
         if (!NumberHelper.isInteger(minWeightMagnitude)) {
             throw new CoreError("The minWeightMagnitude value is not an integer");
         }
-        return new PearlDiver().searchWithTrytes(trytes, minWeightMagnitude);
+        const nonce = new PearlDiver().searchWithTrytes(trytes, minWeightMagnitude);
+        const nonceString: string = nonce.toString();
+        const trytesString: string = trytes.toString();
+        return Trytes.create(trytesString.substr(0, trytesString.length - nonceString.length) + nonceString);
     }
 }

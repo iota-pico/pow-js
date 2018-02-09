@@ -1,19 +1,52 @@
+import { TritsHasherFactory } from "@iota-pico/crypto/dist/factories/tritsHasherFactory";
 import { Trits } from "@iota-pico/data/dist/data/trits";
 import { Trytes } from "@iota-pico/data/dist/data/trytes";
 import * as bigInt from "big-integer";
+import { PearlDiverSearchStates } from "./pearlDiverSearchStates";
 
 /**
  * PearlDiver implementation in plain JavaScript.
  */
 export class PearlDiver {
-    private static readonly CURL_HASH_LENGTH: number = 243;
-    private static readonly CURL_STATE_LENGTH: number = PearlDiver.CURL_HASH_LENGTH * 3;
-    private static readonly TRANSACTION_LENGTH: number = 8019;
-
-    private static readonly NUMBER_OF_ROUNDS: number = 81;
-
+    /* @internal */
     private static readonly HIGH_BITS: number = -1;
+    /* @internal */
     private static readonly LOW_BITS: number = 0;
+
+    /* @internal */
+    private readonly _hashLength: number;
+    /* @internal */
+    private readonly _stateLength: number;
+    /* @internal */
+    private readonly _numberRounds: number;
+    /* @internal */
+    private readonly _transactionLength: number;
+    /* @internal */
+    private readonly _nonceLength: number;
+    /* @internal */
+    private readonly _nonceStart: number;
+    /* @internal */
+    private readonly _nonceInitStart: number;
+    /* @internal */
+    private readonly _nonceIncrementStart: number;
+
+    /**
+     * Create a new instance of PearlDiver.
+     */
+    public constructor() {
+        const curl = TritsHasherFactory.instance().create("curl");
+        const curlConstants = curl.getConstants();
+        this._hashLength = curlConstants.HASH_LENGTH;
+        this._stateLength = curlConstants.STATE_LENGTH;
+        this._numberRounds = curlConstants.NUMBER_OF_ROUNDS;
+        this._transactionLength = this._hashLength * 33;
+        this._nonceLength = this._hashLength / 3;
+        this._nonceStart = this._hashLength - this._nonceLength;
+        const OFFSET_LENGTH = 4;
+        this._nonceInitStart = this._nonceStart + OFFSET_LENGTH;
+        const INT_LENGTH = this._nonceLength / 3;
+        this._nonceIncrementStart = this._nonceInitStart + INT_LENGTH;
+    }
 
     /**
      * Perform a proof of work on the data.
@@ -22,154 +55,203 @@ export class PearlDiver {
      * @returns The trytes produced by the proof of work.
      */
     public searchWithTrytes(trytes: Trytes, minWeightMagnitude: number): Trytes {
-        const transactionTrits = Trits.fromTrytes(trytes).toValue();
+        const curlState = this.prepare(trytes);
 
-        const midCurlStateLow: bigInt.BigInteger[] = [];
-        const midCurlStateHigh: bigInt.BigInteger[] = [];
+        const searchStates = this.searchInit(curlState);
 
-        for (let i = PearlDiver.CURL_HASH_LENGTH; i < PearlDiver.CURL_STATE_LENGTH; i++) {
-            midCurlStateLow[i] = bigInt(PearlDiver.HIGH_BITS);
-            midCurlStateHigh[i] = bigInt(PearlDiver.HIGH_BITS);
-        }
+        return this.search(searchStates, minWeightMagnitude);
+    }
 
-        let offset = 0;
-        for (let i = ((PearlDiver.TRANSACTION_LENGTH - PearlDiver.CURL_HASH_LENGTH) / PearlDiver.CURL_HASH_LENGTH) - 1; i >= 0; i--) {
-            for (let j = 0; j < PearlDiver.CURL_HASH_LENGTH; j++) {
-                switch (transactionTrits[offset++]) {
-                    case 0:
-                        midCurlStateLow[j] = bigInt(PearlDiver.HIGH_BITS);
-                        midCurlStateHigh[j] = bigInt(PearlDiver.HIGH_BITS);
-                        break;
+    private search(searchStates: PearlDiverSearchStates, minWeightMagnitude: number): Trytes {
+        let searching = true;
+        const trits: number[] = [];
 
-                    case 1:
-                        midCurlStateLow[j] = bigInt(PearlDiver.LOW_BITS);
-                        midCurlStateHigh[j] = bigInt(PearlDiver.HIGH_BITS);
-                        break;
+        const midStateCopy: PearlDiverSearchStates = {
+            low: searchStates.low.slice(),
+            high: searchStates.high.slice()
+        };
 
-                    default:
-                        midCurlStateLow[j] = bigInt(PearlDiver.HIGH_BITS);
-                        midCurlStateHigh[j] = bigInt(PearlDiver.LOW_BITS);
-                }
-            }
+        while (searching) {
+            // console.log("increment", this._nonceIncrementStart);
+            this.increment(midStateCopy, this._nonceIncrementStart, this._hashLength);
 
-            this.transform(midCurlStateLow, midCurlStateHigh);
-        }
+            // this.dumpArray("midStateCopy.low", midStateCopy.low);
+            // this.dumpArray("midStateCopy.high", midStateCopy.high);
 
-        let offset2;
-        for (offset2 = 0; offset2 < 162; offset2++) {
-            switch (transactionTrits[offset++]) {
-                case 0:
-                    midCurlStateLow[offset2] = bigInt(PearlDiver.HIGH_BITS);
-                    midCurlStateHigh[offset2] = bigInt(PearlDiver.HIGH_BITS);
-                    break;
+            const state: PearlDiverSearchStates = {
+                low: midStateCopy.low.slice(),
+                high: midStateCopy.high.slice()
+            };
 
-                case 1:
-                    midCurlStateLow[offset2] = bigInt(PearlDiver.LOW_BITS);
-                    midCurlStateHigh[offset2] = bigInt(PearlDiver.HIGH_BITS);
-                    break;
+            // console.log("Before transform");
+            // this.dumpArray("state.low", state.low, state.low.length);
+            // this.dumpArray("state.high", state.high, state.high.length);
 
-                default:
-                    midCurlStateLow[offset] = bigInt(PearlDiver.HIGH_BITS);
-                    midCurlStateHigh[offset2] = bigInt(PearlDiver.LOW_BITS);
-            }
-        }
+            this.transform(state);
 
-        midCurlStateLow[offset2 + 0] = bigInt("-2635249153387078803", 10);
-        midCurlStateHigh[offset2 + 0] = bigInt("-5270498306774157605", 10);
-        midCurlStateLow[offset2 + 1] = bigInt("-1010780497189564473", 10);
-        midCurlStateHigh[offset2 + 1] = bigInt("-8086243977516515777", 10);
-        midCurlStateLow[offset2 + 2] = bigInt("9223336921201902079", 10);
-        midCurlStateHigh[offset2 + 2] = bigInt("-17979214271348737", 10);
-        midCurlStateLow[offset2 + 3] = bigInt("-18014398375264257", 10);
-        midCurlStateHigh[offset2 + 3] = bigInt("18014398509481983", 10);
+            // console.log("after transform");
+            // this.dumpArray("state.low", state.low, state.low.length);
+            // this.dumpArray("state.high", state.high, state.high.length);
 
-        const midCurlStateCopyLow = midCurlStateLow.slice(0, PearlDiver.CURL_STATE_LENGTH);
-        const midCurlStateCopyHigh = midCurlStateHigh.slice(0, PearlDiver.CURL_STATE_LENGTH);
+            const nonceProbe = this.isNonceFound(state, minWeightMagnitude);
 
-        let state = true;
-        let mask: bigInt.BigInteger;
-        let outMask = bigInt(1);
-
-        while (state) {
-            this.increment(midCurlStateCopyLow, midCurlStateCopyHigh, ((PearlDiver.CURL_HASH_LENGTH / 9) * 2) + 162, PearlDiver.CURL_HASH_LENGTH);
-
-            const curlStateLow = midCurlStateCopyLow.slice(0, PearlDiver.CURL_STATE_LENGTH);
-            const curlStateHigh = midCurlStateCopyHigh.slice(0, PearlDiver.CURL_STATE_LENGTH);
-
-            this.transform(curlStateLow, curlStateHigh);
-
-            mask = bigInt(PearlDiver.HIGH_BITS);
-            for (let i = minWeightMagnitude - 1; i >= 0; i--) {
-                const low = curlStateLow[PearlDiver.CURL_HASH_LENGTH - 1 - i];
-                const high = curlStateHigh[PearlDiver.CURL_HASH_LENGTH - 1 - i];
-                const lowXorHigh = low.xor(high);
-                const notLowXorHigh = lowXorHigh.not();
-                mask = mask.and(notLowXorHigh);
-                if (mask === bigInt.zero) {
-                    break;
-                }
-            }
-            if (mask === bigInt.zero) {
+            if (nonceProbe === bigInt.zero) {
                 continue;
             }
 
-            if (state) {
-                state = false;
+            let nonceOutput = bigInt(1);
+            while (nonceOutput.and(nonceProbe).toJSNumber() === 0) {
+                nonceOutput = nonceOutput.shiftLeft(1);
+            }
 
-                while (outMask.and(mask).toJSNumber() === 0) {
-                    outMask = outMask.shiftLeft(1);
-                }
-                for (let i = 0; i < PearlDiver.CURL_HASH_LENGTH; i++) {
-                    transactionTrits[PearlDiver.TRANSACTION_LENGTH - PearlDiver.CURL_HASH_LENGTH + i] =
-                        (midCurlStateCopyLow[i].and(outMask)).toJSNumber() === 0 ? 1
-                            : midCurlStateCopyHigh[i].and(outMask).toJSNumber() === 0 ? -1 : 0;
-                }
+            searching = false;
+
+            for (let i = 0; i < this._hashLength; i++) {
+                trits[i] =
+                    (midStateCopy.low[i].and(nonceOutput)).toJSNumber() === 0 ? 1
+                        : midStateCopy.high[i].and(nonceOutput).toJSNumber() === 0 ? -1 : 0;
             }
         }
 
-        return Trits.fromValue(transactionTrits).toTrytes();
+        return Trits.fromTritsArray(trits).toTrytes();
     }
 
-    private transform(curlStateLow: bigInt.BigInteger[], curlStateHigh: bigInt.BigInteger[]): void {
+    private transform(searchStates: PearlDiverSearchStates): void {
         let curlScratchpadIndex = 0;
-        for (let round = 0; round < PearlDiver.NUMBER_OF_ROUNDS; round++) {
-            const curlScratchpadLow = curlStateLow.slice(0, PearlDiver.CURL_STATE_LENGTH);
-            const curlScratchpadHigh = curlStateHigh.slice(0, PearlDiver.CURL_STATE_LENGTH);
+        for (let round = 0; round < this._numberRounds; round++) {
+            const curlScratchpad: PearlDiverSearchStates = {
+                low: searchStates.low.slice(),
+                high: searchStates.high.slice()
+            };
 
-            for (let curlStateIndex = 0; curlStateIndex < PearlDiver.CURL_STATE_LENGTH; curlStateIndex++) {
-                const alpha = curlScratchpadLow[curlScratchpadIndex];
-                const beta = curlScratchpadHigh[curlScratchpadIndex];
+            for (let stateIndex = 0; stateIndex < this._stateLength; stateIndex++) {
+                const alpha = curlScratchpad.low[curlScratchpadIndex];
+                const beta = curlScratchpad.high[curlScratchpadIndex];
                 if (curlScratchpadIndex < 365) {
                     curlScratchpadIndex += 364;
                 } else {
                     curlScratchpadIndex += -365;
                 }
-                const gamma = curlScratchpadHigh[curlScratchpadIndex];
-                const lowXorBeta = curlScratchpadLow[curlScratchpadIndex].xor(beta);
+                const gamma = curlScratchpad.high[curlScratchpadIndex];
+                const lowXorBeta = curlScratchpad.low[curlScratchpadIndex].xor(beta);
                 const notGamma = gamma.not();
                 const alphaOrNotGamma = alpha.or(notGamma);
                 const delta = alphaOrNotGamma.and(lowXorBeta);
 
-                curlStateLow[curlStateIndex] = delta.not();
+                searchStates.low[stateIndex] = delta.not();
                 const alphaXorGamma = alpha.xor(gamma);
-                curlStateHigh[curlStateIndex] = alphaXorGamma.or(delta);
+                searchStates.high[stateIndex] = alphaXorGamma.or(delta);
+
+                // if (stateIndex >= 296 && stateIndex <= 300) {
+                //     console.log("alpha", alpha.toString());
+                //     console.log("beta", beta.toString());
+                //     console.log("curlScratchpadIndex", curlScratchpadIndex);
+                //     console.log("gamma", gamma.toString());
+                //     console.log("lowXorBeta", lowXorBeta.toString());
+                //     console.log("notGamma", notGamma.toString());
+                //     console.log("alphaOrNotGamma", alphaOrNotGamma.toString());
+                //     console.log("delta", delta.toString());
+                //     console.log("searchStates.low[stateIndex]", searchStates.low[stateIndex].toString());
+                //     console.log("searchStates.high[stateIndex]", searchStates.high[stateIndex].toString());
+                // }
+
+                // if (stateIndex === 298) {
+                //     this.dumpArray("round1", searchStates.high, 298);
+                // }
             }
         }
     }
 
-    private increment(midCurlStateCopyLow: bigInt.BigInteger[], midCurlStateCopyHigh: bigInt.BigInteger[], fromIndex: number, toIndex: number): void {
+    private increment(searchStates: PearlDiverSearchStates, fromIndex: number, toIndex: number): void {
         for (let i = fromIndex; i < toIndex; i++) {
-            if (midCurlStateCopyLow[i].toJSNumber() === PearlDiver.LOW_BITS) {
-                midCurlStateCopyLow[i] = bigInt(PearlDiver.HIGH_BITS);
-                midCurlStateCopyHigh[i] = bigInt(PearlDiver.LOW_BITS);
+            if (searchStates.low[i].toJSNumber() === PearlDiver.LOW_BITS) {
+                searchStates.low[i] = bigInt(PearlDiver.HIGH_BITS);
+                searchStates.high[i] = bigInt(PearlDiver.LOW_BITS);
             } else {
-                if (midCurlStateCopyHigh[i].toJSNumber() === PearlDiver.LOW_BITS) {
-                    midCurlStateCopyHigh[i] = bigInt(PearlDiver.HIGH_BITS);
+                if (searchStates.high[i].toJSNumber() === PearlDiver.LOW_BITS) {
+                    searchStates.high[i] = bigInt(PearlDiver.HIGH_BITS);
                 } else {
-                    midCurlStateCopyLow[i] = bigInt(PearlDiver.LOW_BITS);
+                    searchStates.low[i] = bigInt(PearlDiver.LOW_BITS);
                 }
                 break;
             }
         }
     }
+
+    private prepare(transactionTrytes: Trytes): number[] {
+        const curl = TritsHasherFactory.instance().create("curl");
+        curl.initialize();
+        const transactionTrits = Trits.fromTrytes(transactionTrytes);
+        curl.absorb(transactionTrits, 0, this._transactionLength - this._hashLength);
+        const tritData = transactionTrits.toTritsArray();
+        const curlState = curl.getState();
+        tritData
+            .slice(this._transactionLength - this._hashLength, this._transactionLength)
+            .forEach((value: number, index: number) => {
+                curlState[index] = value;
+            });
+        return curlState;
+    }
+
+    private searchInit(curlState: number[]): PearlDiverSearchStates {
+        const states: PearlDiverSearchStates = {
+            low: [],
+            high: []
+        };
+        curlState.forEach((trit: number, index: number) => {
+            switch (trit) {
+                case 0:
+                    states.low[index] = bigInt(PearlDiver.HIGH_BITS);
+                    states.high[index] = bigInt(PearlDiver.HIGH_BITS);
+                    break;
+                case 1:
+                    states.low[index] = bigInt(PearlDiver.LOW_BITS);
+                    states.high[index] = bigInt(PearlDiver.HIGH_BITS);
+                    break;
+                default:
+                    states.low[index] = bigInt(PearlDiver.HIGH_BITS);
+                    states.high[index] = bigInt(PearlDiver.LOW_BITS);
+            }
+        });
+        this.searchOffset(states, this._nonceStart);
+
+        // this.dumpArray("curlState", curlState);
+        // this.dumpArray("states.low", states.low);
+        // this.dumpArray("states.high", states.high);
+
+        return states;
+    }
+
+    private searchOffset(states: PearlDiverSearchStates, offset: number): void {
+        states.low[offset + 0] = bigInt("-2635249153387078803", 10);
+        states.high[offset + 0] = bigInt("-5270498306774157605", 10);
+        states.low[offset + 1] = bigInt("-1010780497189564473", 10);
+        states.high[offset + 1] = bigInt("-8086243977516515777", 10);
+        states.low[offset + 2] = bigInt("9223336921201902079", 10);
+        states.high[offset + 2] = bigInt("-17979214271348737", 10);
+        states.low[offset + 3] = bigInt("-18014398375264257", 10);
+        states.high[offset + 3] = bigInt("18014398509481983", 10);
+    }
+
+    private isNonceFound(searchStates: PearlDiverSearchStates, minWeightMagnitude: number): bigInt.BigInteger {
+        let mask = bigInt(PearlDiver.HIGH_BITS);
+        for (let i = minWeightMagnitude - 1; i >= 0; i--) {
+            const low = searchStates.low[this._hashLength - 1 - i];
+            const high = searchStates.high[this._hashLength - 1 - i];
+            const lowXorHigh = low.xor(high);
+            const notLowXorHigh = lowXorHigh.not();
+            mask = mask.and(notLowXorHigh);
+            if (mask === bigInt.zero) {
+                break;
+            }
+        }
+        return mask;
+    }
+
+    // private dumpArray(name: string, arr: any[], len: number): void {
+    //     console.log(`===${name}========================================================================`);
+    //     console.log("length", len);
+    //     console.log(arr.slice(0, len).join(", "));
+    //     console.log(`===${name}========================================================================`);
+    // }
 }

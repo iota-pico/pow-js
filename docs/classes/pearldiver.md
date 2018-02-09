@@ -9,6 +9,11 @@ PearlDiver implementation in plain JavaScript.
 
 ## Index
 
+### Constructors
+
+* [constructor](pearldiver.md#constructor)
+
+
 ### Methods
 
 * [searchWithTrytes](pearldiver.md#searchwithtrytes)
@@ -16,6 +21,27 @@ PearlDiver implementation in plain JavaScript.
 
 
 ---
+## Constructors
+<a id="constructor"></a>
+
+
+### ⊕ **new PearlDiver**(): [PearlDiver](pearldiver.md)
+
+
+*Defined in [pearlDiver/pearlDiver.ts:31](https://github.com/iotaeco/iota-pico-pow-js/blob/1f30169/src/pearlDiver/pearlDiver.ts#L31)*
+
+
+
+Create a new instance of PearlDiver.
+
+
+
+
+**Returns:** [PearlDiver](pearldiver.md)
+
+---
+
+
 ## Methods
 <a id="searchwithtrytes"></a>
 
@@ -25,7 +51,7 @@ PearlDiver implementation in plain JavaScript.
 
 
 
-*Defined in [pearlDiver/pearlDiver.ts:24](https://github.com/iotaeco/iota-pico-pow-js/blob/9981ef7/src/pearlDiver/pearlDiver.ts#L24)*
+*Defined in [pearlDiver/pearlDiver.ts:57](https://github.com/iotaeco/iota-pico-pow-js/blob/1f30169/src/pearlDiver/pearlDiver.ts#L57)*
 
 
 
