@@ -72,34 +72,24 @@ export class PearlDiver {
         };
 
         while (searching) {
-            // console.log("increment", this._nonceIncrementStart);
             this.increment(midStateCopy, this._nonceIncrementStart, this._hashLength);
-
-            // this.dumpArray("midStateCopy.low", midStateCopy.low);
-            // this.dumpArray("midStateCopy.high", midStateCopy.high);
 
             const state: PearlDiverSearchStates = {
                 low: midStateCopy.low.slice(),
                 high: midStateCopy.high.slice()
             };
 
-            // console.log("Before transform");
-            // this.dumpArray("state.low", state.low, state.low.length);
-            // this.dumpArray("state.high", state.high, state.high.length);
-
             this.transform(state);
 
-            // console.log("after transform");
-            // this.dumpArray("state.low", state.low, state.low.length);
-            // this.dumpArray("state.high", state.high, state.high.length);
+            const nonceProbe = this.isFoundFast(state, minWeightMagnitude);
 
-            const nonceProbe = this.isNonceFound(state, minWeightMagnitude);
-
-            if (nonceProbe === bigInt.zero) {
+            if (nonceProbe.toJSNumber() === 0) {
                 continue;
             }
 
             let nonceOutput = bigInt(1);
+
+            // Bit scan forward
             while (nonceOutput.and(nonceProbe).toJSNumber() === 0) {
                 nonceOutput = nonceOutput.shiftLeft(1);
             }
@@ -141,23 +131,6 @@ export class PearlDiver {
                 searchStates.low[stateIndex] = delta.not();
                 const alphaXorGamma = alpha.xor(gamma);
                 searchStates.high[stateIndex] = alphaXorGamma.or(delta);
-
-                // if (stateIndex >= 296 && stateIndex <= 300) {
-                //     console.log("alpha", alpha.toString());
-                //     console.log("beta", beta.toString());
-                //     console.log("curlScratchpadIndex", curlScratchpadIndex);
-                //     console.log("gamma", gamma.toString());
-                //     console.log("lowXorBeta", lowXorBeta.toString());
-                //     console.log("notGamma", notGamma.toString());
-                //     console.log("alphaOrNotGamma", alphaOrNotGamma.toString());
-                //     console.log("delta", delta.toString());
-                //     console.log("searchStates.low[stateIndex]", searchStates.low[stateIndex].toString());
-                //     console.log("searchStates.high[stateIndex]", searchStates.high[stateIndex].toString());
-                // }
-
-                // if (stateIndex === 298) {
-                //     this.dumpArray("round1", searchStates.high, 298);
-                // }
             }
         }
     }
@@ -215,10 +188,6 @@ export class PearlDiver {
         });
         this.searchOffset(states, this._nonceStart);
 
-        // this.dumpArray("curlState", curlState);
-        // this.dumpArray("states.low", states.low);
-        // this.dumpArray("states.high", states.high);
-
         return states;
     }
 
@@ -233,25 +202,18 @@ export class PearlDiver {
         states.high[offset + 3] = bigInt("18014398509481983", 10);
     }
 
-    private isNonceFound(searchStates: PearlDiverSearchStates, minWeightMagnitude: number): bigInt.BigInteger {
-        let mask = bigInt(PearlDiver.HIGH_BITS);
+    private isFoundFast(searchStates: PearlDiverSearchStates, minWeightMagnitude: number): bigInt.BigInteger {
+        let lastMeasurement = bigInt(PearlDiver.HIGH_BITS);
         for (let i = minWeightMagnitude - 1; i >= 0; i--) {
             const low = searchStates.low[this._hashLength - 1 - i];
             const high = searchStates.high[this._hashLength - 1 - i];
             const lowXorHigh = low.xor(high);
             const notLowXorHigh = lowXorHigh.not();
-            mask = mask.and(notLowXorHigh);
-            if (mask === bigInt.zero) {
+            lastMeasurement = lastMeasurement.and(notLowXorHigh);
+            if (lastMeasurement.toJSNumber() === 0) {
                 break;
             }
         }
-        return mask;
+        return lastMeasurement;
     }
-
-    // private dumpArray(name: string, arr: any[], len: number): void {
-    //     console.log(`===${name}========================================================================`);
-    //     console.log("length", len);
-    //     console.log(arr.slice(0, len).join(", "));
-    //     console.log(`===${name}========================================================================`);
-    // }
 }

@@ -20,5 +20,5 @@ export declare class PearlDiver {
     private prepare(transactionTrytes);
     private searchInit(curlState);
     private searchOffset(states, offset);
-    private isNonceFound(searchStates, minWeightMagnitude);
+    private isFoundFast(searchStates, minWeightMagnitude);
 }
