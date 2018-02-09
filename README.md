@@ -1,4 +1,4 @@
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iotaeco/iota-pico-pow-ja/master/LICENSE) [![Build Status](https://travis-ci.org/iotaeco/iota-pico-pow-js.svg?branch=master)](https://travis-ci.org/iotaeco/iota-pico-pow-js) [![NSP Status](https://nodesecurity.io/orgs/iotaeco/projects/20384d7e-9f31-47c3-a799-6cc0258443d1/badge)](https://nodesecurity.io/orgs/iotaeco/projects/20384d7e-9f31-47c3-a799-6cc0258443d1)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iotaeco/iota-pico-pow-js/master/LICENSE) [![Build Status](https://travis-ci.org/iotaeco/iota-pico-pow-js.svg?branch=master)](https://travis-ci.org/iotaeco/iota-pico-pow-js) [![NSP Status](https://nodesecurity.io/orgs/iotaeco/projects/20384d7e-9f31-47c3-a799-6cc0258443d1/badge)](https://nodesecurity.io/orgs/iotaeco/projects/20384d7e-9f31-47c3-a799-6cc0258443d1)
 
 # IOTA Pico Framework Proof Of Work JavaScript
 
