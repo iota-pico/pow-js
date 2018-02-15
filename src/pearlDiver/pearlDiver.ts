@@ -103,7 +103,7 @@ export class PearlDiver {
             }
         }
 
-        return Trits.fromTritsArray(trits).toTrytes();
+        return Trits.fromArray(trits).toTrytes();
     }
 
     private transform(searchStates: PearlDiverSearchStates): void {
@@ -156,7 +156,7 @@ export class PearlDiver {
         curl.initialize();
         const transactionTrits = Trits.fromTrytes(transactionTrytes);
         curl.absorb(transactionTrits, 0, this._transactionLength - this._hashLength);
-        const tritData = transactionTrits.toTritsArray();
+        const tritData = transactionTrits.toArray();
         const curlState = curl.getState();
         tritData
             .slice(this._transactionLength - this._hashLength, this._transactionLength)

@@ -65,7 +65,7 @@ class PearlDiver {
                         : midStateCopy.high[i].and(nonceOutput).toJSNumber() === 0 ? -1 : 0;
             }
         }
-        return trits_1.Trits.fromTritsArray(trits).toTrytes();
+        return trits_1.Trits.fromArray(trits).toTrytes();
     }
     transform(searchStates) {
         let curlScratchpadIndex = 0;
@@ -116,7 +116,7 @@ class PearlDiver {
         curl.initialize();
         const transactionTrits = trits_1.Trits.fromTrytes(transactionTrytes);
         curl.absorb(transactionTrits, 0, this._transactionLength - this._hashLength);
-        const tritData = transactionTrits.toTritsArray();
+        const tritData = transactionTrits.toArray();
         const curlState = curl.getState();
         tritData
             .slice(this._transactionLength - this._hashLength, this._transactionLength)
