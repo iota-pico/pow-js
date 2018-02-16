@@ -30,7 +30,7 @@ CurlProofOfWork implementation using NodeJS.
 
 
 
-*Defined in [curlProofOfWork.ts:15](https://github.com/iotaeco/iota-pico-pow-js/blob/27c0253/src/curlProofOfWork.ts#L15)*
+*Defined in [curlProofOfWork.ts:15](https://github.com/iotaeco/iota-pico-pow-js/blob/227964e/src/curlProofOfWork.ts#L15)*
 
 
 
@@ -55,7 +55,7 @@ ___
 
 
 
-*Defined in [curlProofOfWork.ts:25](https://github.com/iotaeco/iota-pico-pow-js/blob/27c0253/src/curlProofOfWork.ts#L25)*
+*Defined in [curlProofOfWork.ts:25](https://github.com/iotaeco/iota-pico-pow-js/blob/227964e/src/curlProofOfWork.ts#L25)*
 
 
 

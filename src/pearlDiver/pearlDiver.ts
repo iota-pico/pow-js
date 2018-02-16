@@ -154,11 +154,10 @@ export class PearlDiver {
     private prepare(transactionTrytes: Trytes): number[] {
         const curl = TritsHasherFactory.instance().create("curl");
         curl.initialize();
-        const transactionTrits = Trits.fromTrytes(transactionTrytes);
+        const transactionTrits = Trits.fromTrytes(transactionTrytes).toArray();
         curl.absorb(transactionTrits, 0, this._transactionLength - this._hashLength);
-        const tritData = transactionTrits.toArray();
         const curlState = curl.getState();
-        tritData
+        transactionTrits
             .slice(this._transactionLength - this._hashLength, this._transactionLength)
             .forEach((value: number, index: number) => {
                 curlState[index] = value;
