@@ -5,7 +5,7 @@ import { Trytes } from "@iota-pico/data/dist/data/trytes";
 import { PearlDiver } from "./pearlDiver/pearlDiver";
 
 /**
- * ProofOfWork implementation using NodeJS.
+ * ProofOfWork implementation using JavaScript.
  */
 export class ProofOfWork implements IProofOfWork {
     /**
