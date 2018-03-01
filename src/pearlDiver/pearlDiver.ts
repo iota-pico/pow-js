@@ -1,4 +1,4 @@
-import { TritsHasherFactory } from "@iota-pico/crypto/dist/factories/tritsHasherFactory";
+import { SpongeFactory } from "@iota-pico/crypto/dist/factories/spongeFactory";
 import { Trits } from "@iota-pico/data/dist/data/trits";
 import { Trytes } from "@iota-pico/data/dist/data/trytes";
 import bigInteger from "big-integer";
@@ -34,7 +34,7 @@ export class PearlDiver {
      * Create a new instance of PearlDiver.
      */
     public constructor() {
-        const curl = TritsHasherFactory.instance().create("curl");
+        const curl = SpongeFactory.instance().create("curl");
         const curlConstants = curl.getConstants();
         this._hashLength = curlConstants.HASH_LENGTH;
         this._stateLength = curlConstants.STATE_LENGTH;
@@ -64,7 +64,8 @@ export class PearlDiver {
 
     private search(searchStates: PearlDiverSearchStates, minWeightMagnitude: number): Trytes {
         let searching = true;
-        const trits: number[] = [];
+
+        const trits = new Int8Array(this._hashLength);
 
         const midStateCopy: PearlDiverSearchStates = {
             low: searchStates.low.slice(),
@@ -151,8 +152,8 @@ export class PearlDiver {
         }
     }
 
-    private prepare(transactionTrytes: Trytes): number[] {
-        const curl = TritsHasherFactory.instance().create("curl");
+    private prepare(transactionTrytes: Trytes): Int8Array {
+        const curl = SpongeFactory.instance().create("curl");
         curl.initialize();
         const transactionTrits = Trits.fromTrytes(transactionTrytes).toArray();
         curl.absorb(transactionTrits, 0, this._transactionLength - this._hashLength);
@@ -165,7 +166,7 @@ export class PearlDiver {
         return curlState;
     }
 
-    private searchInit(curlState: number[]): PearlDiverSearchStates {
+    private searchInit(curlState: Int8Array): PearlDiverSearchStates {
         const states: PearlDiverSearchStates = {
             low: [],
             high: []

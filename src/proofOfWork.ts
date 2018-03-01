@@ -1,13 +1,13 @@
-import { CoreError } from "@iota-pico/core/dist/error/coreError";
 import { NumberHelper } from "@iota-pico/core/dist/helpers/numberHelper";
-import { ICurlProofOfWork } from "@iota-pico/crypto/dist/interfaces/ICurlProofOfWork";
+import { CryptoError } from "@iota-pico/crypto/dist/error/cryptoError";
+import { IProofOfWork } from "@iota-pico/crypto/dist/interfaces/IProofOfWork";
 import { Trytes } from "@iota-pico/data/dist/data/trytes";
 import { PearlDiver } from "./pearlDiver/pearlDiver";
 
 /**
- * CurlProofOfWork implementation using NodeJS.
+ * ProofOfWork implementation using NodeJS.
  */
-export class CurlProofOfWork implements ICurlProofOfWork {
+export class ProofOfWork implements IProofOfWork {
     /**
      * Allow the proof of work to perform any initialization.
      * Will throw an exception if the implementation is not supported.
@@ -24,14 +24,14 @@ export class CurlProofOfWork implements ICurlProofOfWork {
      */
     public async pow(trytes: Trytes, minWeightMagnitude: number): Promise<Trytes> {
         if (trytes === undefined || trytes === null) {
-            throw new CoreError("Trytes can not be null or undefined");
+            throw new CryptoError("Trytes can not be null or undefined");
         }
         if (!NumberHelper.isInteger(minWeightMagnitude)) {
-            throw new CoreError("The minWeightMagnitude value is not an integer");
+            throw new CryptoError("The minWeightMagnitude value is not an integer");
         }
         const nonce = new PearlDiver().searchWithTrytes(trytes, minWeightMagnitude);
         const nonceString: string = nonce.toString();
         const trytesString: string = trytes.toString();
-        return Trytes.create(trytesString.substr(0, trytesString.length - nonceString.length) + nonceString);
+        return Trytes.fromString(trytesString.substr(0, trytesString.length - nonceString.length) + nonceString);
     }
 }

@@ -28,7 +28,7 @@ PearlDiver implementation in plain JavaScript.
 ### ⊕ **new PearlDiver**(): [PearlDiver](pearldiver.md)
 
 
-*Defined in [pearlDiver/pearlDiver.ts:31](https://github.com/iotaeco/iota-pico-pow-js/blob/227964e/src/pearlDiver/pearlDiver.ts#L31)*
+*Defined in [pearlDiver/pearlDiver.ts:31](https://github.com/iotaeco/iota-pico-pow-js/blob/daa3ce7/src/pearlDiver/pearlDiver.ts#L31)*
 
 
 
@@ -51,7 +51,7 @@ Create a new instance of PearlDiver.
 
 
 
-*Defined in [pearlDiver/pearlDiver.ts:57](https://github.com/iotaeco/iota-pico-pow-js/blob/227964e/src/pearlDiver/pearlDiver.ts#L57)*
+*Defined in [pearlDiver/pearlDiver.ts:57](https://github.com/iotaeco/iota-pico-pow-js/blob/daa3ce7/src/pearlDiver/pearlDiver.ts#L57)*
 
 
 

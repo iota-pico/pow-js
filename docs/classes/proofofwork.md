@@ -1,22 +1,22 @@
-[@iota-pico/pow-js](../README.md) > [CurlProofOfWork](../classes/curlproofofwork.md)
+[@iota-pico/pow-js](../README.md) > [ProofOfWork](../classes/proofofwork.md)
 
 
 
-# Class: CurlProofOfWork
+# Class: ProofOfWork
 
 
-CurlProofOfWork implementation using NodeJS.
+ProofOfWork implementation using NodeJS.
 
 ## Implements
 
-* `ICurlProofOfWork`
+* `IProofOfWork`
 
 ## Index
 
 ### Methods
 
-* [initialize](curlproofofwork.md#initialize)
-* [pow](curlproofofwork.md#pow)
+* [initialize](proofofwork.md#initialize)
+* [pow](proofofwork.md#pow)
 
 
 
@@ -30,7 +30,7 @@ CurlProofOfWork implementation using NodeJS.
 
 
 
-*Defined in [curlProofOfWork.ts:15](https://github.com/iotaeco/iota-pico-pow-js/blob/227964e/src/curlProofOfWork.ts#L15)*
+*Defined in proofOfWork.ts:15*
 
 
 
@@ -55,7 +55,7 @@ ___
 
 
 
-*Defined in [curlProofOfWork.ts:25](https://github.com/iotaeco/iota-pico-pow-js/blob/227964e/src/curlProofOfWork.ts#L25)*
+*Defined in proofOfWork.ts:25*
 
 
 

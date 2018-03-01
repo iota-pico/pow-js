@@ -7,8 +7,8 @@
 
 ### Classes
 
-* [CurlProofOfWork](classes/curlproofofwork.md)
 * [PearlDiver](classes/pearldiver.md)
+* [ProofOfWork](classes/proofofwork.md)
 
 
 ### Type aliases
@@ -25,7 +25,7 @@
 
 **Τ PearlDiverSearchStates**:  *`object`* 
 
-*Defined in [pearlDiver/pearlDiverSearchStates.ts:7](https://github.com/iotaeco/iota-pico-pow-js/blob/227964e/src/pearlDiver/pearlDiverSearchStates.ts#L7)*
+*Defined in [pearlDiver/pearlDiverSearchStates.ts:7](https://github.com/iotaeco/iota-pico-pow-js/blob/daa3ce7/src/pearlDiver/pearlDiverSearchStates.ts#L7)*
 
 
 
