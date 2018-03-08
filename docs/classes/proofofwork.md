@@ -31,7 +31,7 @@ ProofOfWork implementation using JavaScript.
 
 
 
-*Defined in [proofOfWork.ts:17](https://github.com/iotaeco/iota-pico-pow-js/blob/11c3195/src/proofOfWork.ts#L17)*
+*Defined in [proofOfWork.ts:17](https://github.com/iotaeco/iota-pico-pow-js/blob/7916896/src/proofOfWork.ts#L17)*
 
 
 
@@ -56,7 +56,7 @@ ___
 
 
 
-*Defined in [proofOfWork.ts:25](https://github.com/iotaeco/iota-pico-pow-js/blob/11c3195/src/proofOfWork.ts#L25)*
+*Defined in [proofOfWork.ts:25](https://github.com/iotaeco/iota-pico-pow-js/blob/7916896/src/proofOfWork.ts#L25)*
 
 
 
@@ -83,7 +83,7 @@ ___
 
 
 
-*Defined in [proofOfWork.ts:37](https://github.com/iotaeco/iota-pico-pow-js/blob/11c3195/src/proofOfWork.ts#L37)*
+*Defined in [proofOfWork.ts:37](https://github.com/iotaeco/iota-pico-pow-js/blob/7916896/src/proofOfWork.ts#L37)*
 
 
 
