@@ -4,7 +4,7 @@ import { Trytes } from "@iota-pico/data/dist/data/trytes";
 /**
  * ProofOfWork implementation using JavaScript.
  */
-export declare class ProofOfWork implements IProofOfWork {
+export declare class ProofOfWorkJs implements IProofOfWork {
     /**
      * Allow the proof of work to perform any initialization.
      * Will throw an exception if the implementation is not supported.

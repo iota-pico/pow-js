@@ -1,7 +1,8 @@
 import { SpongeFactory } from "@iota-pico/crypto/dist/factories/spongeFactory";
 import { Trits } from "@iota-pico/data/dist/data/trits";
 import { Trytes } from "@iota-pico/data/dist/data/trytes";
-import bigInteger from "big-integer";
+// tslint:disable-next-line:import-name
+import bigInt from "big-integer";
 import { PearlDiverSearchStates } from "./pearlDiverSearchStates";
 
 /**
@@ -88,7 +89,7 @@ export class PearlDiver {
                 continue;
             }
 
-            let nonceOutput = bigInteger(1);
+            let nonceOutput = bigInt(1);
 
             // Bit scan forward
             while (nonceOutput.and(nonceProbe).toJSNumber() === 0) {
@@ -139,13 +140,13 @@ export class PearlDiver {
     private increment(searchStates: PearlDiverSearchStates, fromIndex: number, toIndex: number): void {
         for (let i = fromIndex; i < toIndex; i++) {
             if (searchStates.low[i].toJSNumber() === PearlDiver.LOW_BITS) {
-                searchStates.low[i] = bigInteger(PearlDiver.HIGH_BITS);
-                searchStates.high[i] = bigInteger(PearlDiver.LOW_BITS);
+                searchStates.low[i] = bigInt(PearlDiver.HIGH_BITS);
+                searchStates.high[i] = bigInt(PearlDiver.LOW_BITS);
             } else {
                 if (searchStates.high[i].toJSNumber() === PearlDiver.LOW_BITS) {
-                    searchStates.high[i] = bigInteger(PearlDiver.HIGH_BITS);
+                    searchStates.high[i] = bigInt(PearlDiver.HIGH_BITS);
                 } else {
-                    searchStates.low[i] = bigInteger(PearlDiver.LOW_BITS);
+                    searchStates.low[i] = bigInt(PearlDiver.LOW_BITS);
                 }
                 break;
             }
@@ -174,16 +175,16 @@ export class PearlDiver {
         curlState.forEach((trit: number, index: number) => {
             switch (trit) {
                 case 0:
-                    states.low[index] = bigInteger(PearlDiver.HIGH_BITS);
-                    states.high[index] = bigInteger(PearlDiver.HIGH_BITS);
+                    states.low[index] = bigInt(PearlDiver.HIGH_BITS);
+                    states.high[index] = bigInt(PearlDiver.HIGH_BITS);
                     break;
                 case 1:
-                    states.low[index] = bigInteger(PearlDiver.LOW_BITS);
-                    states.high[index] = bigInteger(PearlDiver.HIGH_BITS);
+                    states.low[index] = bigInt(PearlDiver.LOW_BITS);
+                    states.high[index] = bigInt(PearlDiver.HIGH_BITS);
                     break;
                 default:
-                    states.low[index] = bigInteger(PearlDiver.HIGH_BITS);
-                    states.high[index] = bigInteger(PearlDiver.LOW_BITS);
+                    states.low[index] = bigInt(PearlDiver.HIGH_BITS);
+                    states.high[index] = bigInt(PearlDiver.LOW_BITS);
             }
         });
         this.searchOffset(states, this._nonceStart);
@@ -192,18 +193,18 @@ export class PearlDiver {
     }
 
     private searchOffset(states: PearlDiverSearchStates, offset: number): void {
-        states.low[offset + 0] = bigInteger("-2635249153387078803", 10);
-        states.high[offset + 0] = bigInteger("-5270498306774157605", 10);
-        states.low[offset + 1] = bigInteger("-1010780497189564473", 10);
-        states.high[offset + 1] = bigInteger("-8086243977516515777", 10);
-        states.low[offset + 2] = bigInteger("9223336921201902079", 10);
-        states.high[offset + 2] = bigInteger("-17979214271348737", 10);
-        states.low[offset + 3] = bigInteger("-18014398375264257", 10);
-        states.high[offset + 3] = bigInteger("18014398509481983", 10);
+        states.low[offset + 0] = bigInt("-2635249153387078803", 10);
+        states.high[offset + 0] = bigInt("-5270498306774157605", 10);
+        states.low[offset + 1] = bigInt("-1010780497189564473", 10);
+        states.high[offset + 1] = bigInt("-8086243977516515777", 10);
+        states.low[offset + 2] = bigInt("9223336921201902079", 10);
+        states.high[offset + 2] = bigInt("-17979214271348737", 10);
+        states.low[offset + 3] = bigInt("-18014398375264257", 10);
+        states.high[offset + 3] = bigInt("18014398509481983", 10);
     }
 
-    private isFoundFast(searchStates: PearlDiverSearchStates, minWeightMagnitude: number): bigInteger.BigInteger {
-        let lastMeasurement = bigInteger(PearlDiver.HIGH_BITS);
+    private isFoundFast(searchStates: PearlDiverSearchStates, minWeightMagnitude: number): bigInt.BigInteger {
+        let lastMeasurement = bigInt(PearlDiver.HIGH_BITS);
         for (let i = minWeightMagnitude - 1; i >= 0; i--) {
             const low = searchStates.low[this._hashLength - 1 - i];
             const high = searchStates.high[this._hashLength - 1 - i];

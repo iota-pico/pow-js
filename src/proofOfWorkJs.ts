@@ -9,7 +9,7 @@ import { PearlDiver } from "./pearlDiver/pearlDiver";
 /**
  * ProofOfWork implementation using JavaScript.
  */
-export class ProofOfWork implements IProofOfWork {
+export class ProofOfWorkJs implements IProofOfWork {
     /**
      * Allow the proof of work to perform any initialization.
      * Will throw an exception if the implementation is not supported.

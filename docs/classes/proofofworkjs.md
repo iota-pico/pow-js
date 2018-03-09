@@ -1,8 +1,8 @@
-[@iota-pico/pow-js](../README.md) > [ProofOfWork](../classes/proofofwork.md)
+[@iota-pico/pow-js](../README.md) > [ProofOfWorkJs](../classes/proofofworkjs.md)
 
 
 
-# Class: ProofOfWork
+# Class: ProofOfWorkJs
 
 
 ProofOfWork implementation using JavaScript.
@@ -15,9 +15,9 @@ ProofOfWork implementation using JavaScript.
 
 ### Methods
 
-* [initialize](proofofwork.md#initialize)
-* [performsSingle](proofofwork.md#performssingle)
-* [pow](proofofwork.md#pow)
+* [initialize](proofofworkjs.md#initialize)
+* [performsSingle](proofofworkjs.md#performssingle)
+* [pow](proofofworkjs.md#pow)
 
 
 
@@ -31,7 +31,7 @@ ProofOfWork implementation using JavaScript.
 
 
 
-*Defined in [proofOfWork.ts:17](https://github.com/iotaeco/iota-pico-pow-js/blob/7916896/src/proofOfWork.ts#L17)*
+*Defined in proofOfWorkJs.ts:17*
 
 
 
@@ -56,7 +56,7 @@ ___
 
 
 
-*Defined in [proofOfWork.ts:25](https://github.com/iotaeco/iota-pico-pow-js/blob/7916896/src/proofOfWork.ts#L25)*
+*Defined in proofOfWorkJs.ts:25*
 
 
 
@@ -83,7 +83,7 @@ ___
 
 
 
-*Defined in [proofOfWork.ts:37](https://github.com/iotaeco/iota-pico-pow-js/blob/7916896/src/proofOfWork.ts#L37)*
+*Defined in proofOfWorkJs.ts:37*
 
 
 
