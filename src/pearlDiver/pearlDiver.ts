@@ -36,10 +36,9 @@ export class PearlDiver {
      */
     public constructor() {
         const curl = SpongeFactory.instance().create("curl");
-        const curlConstants = curl.getConstants();
-        this._hashLength = curlConstants.HASH_LENGTH;
-        this._stateLength = curlConstants.STATE_LENGTH;
-        this._numberRounds = curlConstants.NUMBER_OF_ROUNDS;
+        this._hashLength = curl.getConstant("HASH_LENGTH");
+        this._stateLength = curl.getConstant("STATE_LENGTH");
+        this._numberRounds = curl.getConstant("NUMBER_OF_ROUNDS");
         this._transactionLength = this._hashLength * 33;
         this._nonceLength = this._hashLength / 3;
         this._nonceStart = this._hashLength - this._nonceLength;

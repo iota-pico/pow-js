@@ -1,6 +1,6 @@
 {
     "name": "@iota-pico/pow-js",
-    "version": "0.7.0",
+    "version": "0.9.0",
     "description": "IOTA Pico Framework Proof Of Work JavaScript",
     "typings": "dist/index.d.ts",
     "main": "dist/index.js",
@@ -43,9 +43,9 @@
         "dist": "npm-run-all build test docs"
     },
     "dependencies": {
-        "@iota-pico/core": "^0.7.0",
-        "@iota-pico/crypto": "^0.7.0",
-        "@iota-pico/data": "^0.7.0",
+        "@iota-pico/core": "^0.9.0",
+        "@iota-pico/crypto": "^0.9.0",
+        "@iota-pico/data": "^0.9.0",
         "big-integer": "^1.6.26"
     },
     "devDependencies": {
