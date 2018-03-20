@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.9.2
+
+* Can now perform multi-pass pow as well as single pass
+
 ## v0.7.0
 
 * Added code coverage to testing
