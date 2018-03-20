@@ -54,7 +54,7 @@ ProofOfWork implementation using JavaScript.
 
 *Overrides ProofOfWorkBase.__constructor*
 
-*Defined in [proofOfWorkJs.ts:12](https://github.com/iotaeco/iota-pico-pow-js/blob/c0bb8ba/src/proofOfWorkJs.ts#L12)*
+*Defined in [proofOfWorkJs.ts:12](https://github.com/iotaeco/iota-pico-pow-js/blob/fd7887f/src/proofOfWorkJs.ts#L12)*
 
 
 
@@ -175,7 +175,7 @@ ___
 
 *Overrides ProofOfWorkBase.singlePow*
 
-*Defined in [proofOfWorkJs.ts:27](https://github.com/iotaeco/iota-pico-pow-js/blob/c0bb8ba/src/proofOfWorkJs.ts#L27)*
+*Defined in [proofOfWorkJs.ts:27](https://github.com/iotaeco/iota-pico-pow-js/blob/fd7887f/src/proofOfWorkJs.ts#L27)*
 
 
 
