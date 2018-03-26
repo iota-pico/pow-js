@@ -3,7 +3,7 @@
     "version": "0.9.2",
     "description": "IOTA Pico Framework Proof Of Work JavaScript",
     "typings": "dist/index.d.ts",
-    "main": "pkg/iota-pico-pow-js.js",
+    "main": "dist/index.js",
     "module": "dist/index.js",
     "keywords": [
         "iota",

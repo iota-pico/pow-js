@@ -25,7 +25,7 @@
 
 **Τ PearlDiverSearchStates**:  *`object`* 
 
-*Defined in [pearlDiver/pearlDiverSearchStates.ts:7](https://github.com/iotaeco/iota-pico-pow-js/blob/f15ad1f/src/pearlDiver/pearlDiverSearchStates.ts#L7)*
+*Defined in [pearlDiver/pearlDiverSearchStates.ts:7](https://github.com/iotaeco/iota-pico-pow-js/blob/369f2d6/src/pearlDiver/pearlDiverSearchStates.ts#L7)*
 
 
 
