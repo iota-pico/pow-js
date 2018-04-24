@@ -1,24 +1,14 @@
 [@iota-pico/pow-js](../README.md) > [ProofOfWorkJs](../classes/proofofworkjs.md)
 
-
-
 # Class: ProofOfWorkJs
-
 
 ProofOfWork implementation using JavaScript.
 
 ## Hierarchy
 
-
  `ProofOfWorkBase`
 
 **↳ ProofOfWorkJs**
-
-
-
-
-
-
 
 ## Implements
 
@@ -30,11 +20,9 @@ ProofOfWork implementation using JavaScript.
 
 * [constructor](proofofworkjs.md#constructor)
 
-
 ### Properties
 
 * [MAX_TIMESTAMP_VALUE](proofofworkjs.md#max_timestamp_value)
-
 
 ### Methods
 
@@ -42,24 +30,19 @@ ProofOfWork implementation using JavaScript.
 * [pow](proofofworkjs.md#pow)
 * [singlePow](proofofworkjs.md#singlepow)
 
-
-
 ---
-## Constructors
-<a id="constructor"></a>
 
+## Constructors
+
+<a id="constructor"></a>
 
 ### ⊕ **new ProofOfWorkJs**(timeService?: *`ITimeService`*): [ProofOfWorkJs](proofofworkjs.md)
 
-
 *Overrides ProofOfWorkBase.__constructor*
 
-*Defined in [proofOfWorkJs.ts:12](https://github.com/iotaeco/iota-pico-pow-js/blob/664b1e2/src/proofOfWorkJs.ts#L12)*
-
-
+*Defined in [proofOfWorkJs.ts:12](https://github.com/iota-pico/pow-js/blob/cf1d86c/src/proofOfWorkJs.ts#L12)*
 
 Create an instance of ProofOfWork.
-
 
 **Parameters:**
 
@@ -67,61 +50,41 @@ Create an instance of ProofOfWork.
 | ------ | ------ | ------ |
 | timeService | `ITimeService`   |  Service to get the time for attachments. |
 
-
-
-
-
 **Returns:** [ProofOfWorkJs](proofofworkjs.md)
 
 ---
 
-
 ## Properties
+
 <a id="max_timestamp_value"></a>
 
-### «Static» MAX_TIMESTAMP_VALUE
+### `<Static>` MAX_TIMESTAMP_VALUE
 
 **●  MAX_TIMESTAMP_VALUE**:  *`number`* 
 
 *Inherited from ProofOfWorkBase.MAX_TIMESTAMP_VALUE*
 
-*Defined in D:/Workarea/iotaeco/iota-pico-pow-js/node_modules/@iota-pico/crypto/dist/proofOfWork/proofOfWorkBase.d.ts:12*
-
-
+*Defined in D:/Workarea/iota-pico/pow-js/node_modules/@iota-pico/crypto/dist/proofOfWork/proofOfWorkBase.d.ts:12*
 
 The maximum timestamp value used in proof of work.
 
-
-
-
 ___
 
-
 ## Methods
+
 <a id="initialize"></a>
 
 ###  initialize
 
-► **initialize**(): `Promise`.<`void`>
-
-
+▸ **initialize**(): `Promise`.<`void`>
 
 *Inherited from ProofOfWorkBase.initialize*
 
-*Defined in D:/Workarea/iotaeco/iota-pico-pow-js/node_modules/@iota-pico/crypto/dist/proofOfWork/proofOfWorkBase.d.ts:22*
-
-
+*Defined in D:/Workarea/iota-pico/pow-js/node_modules/@iota-pico/crypto/dist/proofOfWork/proofOfWorkBase.d.ts:22*
 
 Allow the proof of work to perform any initialization. Will throw an exception if the implementation is not supported.
 
-
-
-
 **Returns:** `Promise`.<`void`>
-
-
-
-
 
 ___
 
@@ -129,18 +92,13 @@ ___
 
 ###  pow
 
-► **pow**(trunkTransaction: *`Hash`*, branchTransaction: *`Hash`*, trytes: *`Trytes`[]*, minWeightMagnitude: *`number`*): `Promise`.<`Trytes`[]>
-
-
+▸ **pow**(trunkTransaction: *`Hash`*, branchTransaction: *`Hash`*, trytes: *`Trytes`[]*, minWeightMagnitude: *`number`*): `Promise`.<`Trytes`[]>
 
 *Inherited from ProofOfWorkBase.pow*
 
-*Defined in D:/Workarea/iotaeco/iota-pico-pow-js/node_modules/@iota-pico/crypto/dist/proofOfWork/proofOfWorkBase.d.ts:31*
-
-
+*Defined in D:/Workarea/iota-pico/pow-js/node_modules/@iota-pico/crypto/dist/proofOfWork/proofOfWorkBase.d.ts:31*
 
 Perform a proof of work on the data.
-
 
 **Parameters:**
 
@@ -151,17 +109,8 @@ Perform a proof of work on the data.
 | trytes | `Trytes`[]   |  The trytes to perform the pow on. |
 | minWeightMagnitude | `number`   |  The minimum weight magnitude. |
 
-
-
-
-
 **Returns:** `Promise`.<`Trytes`[]>
 The trytes produced by the proof of work.
-
-
-
-
-
 
 ___
 
@@ -169,18 +118,13 @@ ___
 
 ###  singlePow
 
-► **singlePow**(trytes: *`Trytes`*, minWeightMagnitude: *`number`*): `Promise`.<`Trytes`>
-
-
+▸ **singlePow**(trytes: *`Trytes`*, minWeightMagnitude: *`number`*): `Promise`.<`Trytes`>
 
 *Overrides ProofOfWorkBase.singlePow*
 
-*Defined in [proofOfWorkJs.ts:27](https://github.com/iotaeco/iota-pico-pow-js/blob/664b1e2/src/proofOfWorkJs.ts#L27)*
-
-
+*Defined in [proofOfWorkJs.ts:27](https://github.com/iota-pico/pow-js/blob/cf1d86c/src/proofOfWorkJs.ts#L27)*
 
 Perform a proof of work on a single item.
-
 
 **Parameters:**
 
@@ -189,18 +133,8 @@ Perform a proof of work on a single item.
 | trytes | `Trytes`   |  The trytes to perform the pow on. |
 | minWeightMagnitude | `number`   |  The minimum weight magnitude. |
 
-
-
-
-
 **Returns:** `Promise`.<`Trytes`>
 The trytes produced by the proof of work.
 
-
-
-
-
-
 ___
-
 

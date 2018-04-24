@@ -1,11 +1,12 @@
 [@iota-pico/pow-js](../README.md) > [PearlDiver](../classes/pearldiver.md)
 
-
-
 # Class: PearlDiver
 
-
 PearlDiver implementation in plain JavaScript.
+
+## Hierarchy
+
+**PearlDiver**
 
 ## Index
 
@@ -13,50 +14,37 @@ PearlDiver implementation in plain JavaScript.
 
 * [constructor](pearldiver.md#constructor)
 
-
 ### Methods
 
 * [searchWithTrytes](pearldiver.md#searchwithtrytes)
 
-
-
 ---
-## Constructors
-<a id="constructor"></a>
 
+## Constructors
+
+<a id="constructor"></a>
 
 ### ⊕ **new PearlDiver**(): [PearlDiver](pearldiver.md)
 
-
-*Defined in [pearlDiver/pearlDiver.ts:32](https://github.com/iotaeco/iota-pico-pow-js/blob/664b1e2/src/pearlDiver/pearlDiver.ts#L32)*
-
-
+*Defined in [pearlDiver/pearlDiver.ts:32](https://github.com/iota-pico/pow-js/blob/cf1d86c/src/pearlDiver/pearlDiver.ts#L32)*
 
 Create a new instance of PearlDiver.
-
-
-
 
 **Returns:** [PearlDiver](pearldiver.md)
 
 ---
 
-
 ## Methods
+
 <a id="searchwithtrytes"></a>
 
 ###  searchWithTrytes
 
-► **searchWithTrytes**(trytes: *`Trytes`*, minWeightMagnitude: *`number`*): `Trytes`
+▸ **searchWithTrytes**(trytes: *`Trytes`*, minWeightMagnitude: *`number`*): `Trytes`
 
-
-
-*Defined in [pearlDiver/pearlDiver.ts:57](https://github.com/iotaeco/iota-pico-pow-js/blob/664b1e2/src/pearlDiver/pearlDiver.ts#L57)*
-
-
+*Defined in [pearlDiver/pearlDiver.ts:57](https://github.com/iota-pico/pow-js/blob/cf1d86c/src/pearlDiver/pearlDiver.ts#L57)*
 
 Perform a proof of work on the data.
-
 
 **Parameters:**
 
@@ -65,18 +53,8 @@ Perform a proof of work on the data.
 | trytes | `Trytes`   |  The trytes to perform the pow on. |
 | minWeightMagnitude | `number`   |  The minimum weight magnitude. |
 
-
-
-
-
 **Returns:** `Trytes`
 The trytes produced by the proof of work.
 
-
-
-
-
-
 ___
-
 
