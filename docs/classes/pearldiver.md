@@ -26,7 +26,7 @@ PearlDiver implementation in plain JavaScript.
 
 ### ⊕ **new PearlDiver**(): [PearlDiver](pearldiver.md)
 
-*Defined in [pearlDiver/pearlDiver.ts:32](https://github.com/iota-pico/pow-js/blob/cf1d86c/src/pearlDiver/pearlDiver.ts#L32)*
+*Defined in [pearlDiver/pearlDiver.ts:32](https://github.com/iota-pico/pow-js/blob/4a355a8/src/pearlDiver/pearlDiver.ts#L32)*
 
 Create a new instance of PearlDiver.
 
@@ -42,7 +42,7 @@ Create a new instance of PearlDiver.
 
 ▸ **searchWithTrytes**(trytes: *`Trytes`*, minWeightMagnitude: *`number`*): `Trytes`
 
-*Defined in [pearlDiver/pearlDiver.ts:57](https://github.com/iota-pico/pow-js/blob/cf1d86c/src/pearlDiver/pearlDiver.ts#L57)*
+*Defined in [pearlDiver/pearlDiver.ts:57](https://github.com/iota-pico/pow-js/blob/4a355a8/src/pearlDiver/pearlDiver.ts#L57)*
 
 Perform a proof of work on the data.
 
