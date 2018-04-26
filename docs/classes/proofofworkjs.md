@@ -40,7 +40,7 @@ ProofOfWork implementation using JavaScript.
 
 *Overrides ProofOfWorkBase.__constructor*
 
-*Defined in [proofOfWorkJs.ts:12](https://github.com/iota-pico/pow-js/blob/4a355a8/src/proofOfWorkJs.ts#L12)*
+*Defined in [proofOfWorkJs.ts:12](https://github.com/iota-pico/pow-js/blob/78d484a/src/proofOfWorkJs.ts#L12)*
 
 Create an instance of ProofOfWork.
 
@@ -80,11 +80,12 @@ ___
 
 *Inherited from ProofOfWorkBase.initialize*
 
-*Defined in D:/Workarea/iota-pico/pow-js/node_modules/@iota-pico/crypto/dist/proofOfWork/proofOfWorkBase.d.ts:22*
+*Defined in D:/Workarea/iota-pico/pow-js/node_modules/@iota-pico/crypto/dist/proofOfWork/proofOfWorkBase.d.ts:23*
 
 Allow the proof of work to perform any initialization. Will throw an exception if the implementation is not supported.
 
 **Returns:** `Promise`.<`void`>
+Promise.
 
 ___
 
@@ -96,7 +97,7 @@ ___
 
 *Inherited from ProofOfWorkBase.pow*
 
-*Defined in D:/Workarea/iota-pico/pow-js/node_modules/@iota-pico/crypto/dist/proofOfWork/proofOfWorkBase.d.ts:31*
+*Defined in D:/Workarea/iota-pico/pow-js/node_modules/@iota-pico/crypto/dist/proofOfWork/proofOfWorkBase.d.ts:32*
 
 Perform a proof of work on the data.
 
@@ -122,7 +123,7 @@ ___
 
 *Overrides ProofOfWorkBase.singlePow*
 
-*Defined in [proofOfWorkJs.ts:27](https://github.com/iota-pico/pow-js/blob/4a355a8/src/proofOfWorkJs.ts#L27)*
+*Defined in [proofOfWorkJs.ts:27](https://github.com/iota-pico/pow-js/blob/78d484a/src/proofOfWorkJs.ts#L27)*
 
 Perform a proof of work on a single item.
 
