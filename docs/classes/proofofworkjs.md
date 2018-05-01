@@ -36,11 +36,13 @@ ProofOfWork implementation using JavaScript.
 
 <a id="constructor"></a>
 
-### ⊕ **new ProofOfWorkJs**(timeService?: *`ITimeService`*): [ProofOfWorkJs](proofofworkjs.md)
+###  constructor
+
+⊕ **new ProofOfWorkJs**(timeService?: *`ITimeService`*): [ProofOfWorkJs](proofofworkjs.md)
 
 *Overrides ProofOfWorkBase.__constructor*
 
-*Defined in [proofOfWorkJs.ts:12](https://github.com/iota-pico/pow-js/blob/78d484a/src/proofOfWorkJs.ts#L12)*
+*Defined in [proofOfWorkJs.ts:12](https://github.com/iota-pico/pow-js/blob/ce7df08/src/proofOfWorkJs.ts#L12)*
 
 Create an instance of ProofOfWork.
 
@@ -48,11 +50,11 @@ Create an instance of ProofOfWork.
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| timeService | `ITimeService`   |  Service to get the time for attachments. |
+| `Optional` timeService | `ITimeService` |  Service to get the time for attachments. |
 
 **Returns:** [ProofOfWorkJs](proofofworkjs.md)
 
----
+___
 
 ## Properties
 
@@ -60,7 +62,7 @@ Create an instance of ProofOfWork.
 
 ### `<Static>` MAX_TIMESTAMP_VALUE
 
-**●  MAX_TIMESTAMP_VALUE**:  *`number`* 
+**● MAX_TIMESTAMP_VALUE**: *`number`*
 
 *Inherited from ProofOfWorkBase.MAX_TIMESTAMP_VALUE*
 
@@ -76,7 +78,7 @@ ___
 
 ###  initialize
 
-▸ **initialize**(): `Promise`.<`void`>
+▸ **initialize**(): `Promise`<`void`>
 
 *Inherited from ProofOfWorkBase.initialize*
 
@@ -84,16 +86,15 @@ ___
 
 Allow the proof of work to perform any initialization. Will throw an exception if the implementation is not supported.
 
-**Returns:** `Promise`.<`void`>
+**Returns:** `Promise`<`void`>
 Promise.
 
 ___
-
 <a id="pow"></a>
 
 ###  pow
 
-▸ **pow**(trunkTransaction: *`Hash`*, branchTransaction: *`Hash`*, trytes: *`Trytes`[]*, minWeightMagnitude: *`number`*): `Promise`.<`Trytes`[]>
+▸ **pow**(trunkTransaction: *`Hash`*, branchTransaction: *`Hash`*, trytes: *`Trytes`[]*, minWeightMagnitude: *`number`*): `Promise`<`Trytes`[]>
 
 *Inherited from ProofOfWorkBase.pow*
 
@@ -105,25 +106,24 @@ Perform a proof of work on the data.
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| trunkTransaction | `Hash`   |  The trunkTransaction to use for the pow. |
-| branchTransaction | `Hash`   |  The branchTransaction to use for the pow. |
-| trytes | `Trytes`[]   |  The trytes to perform the pow on. |
-| minWeightMagnitude | `number`   |  The minimum weight magnitude. |
+| trunkTransaction | `Hash` |  The trunkTransaction to use for the pow. |
+| branchTransaction | `Hash` |  The branchTransaction to use for the pow. |
+| trytes | `Trytes`[] |  The trytes to perform the pow on. |
+| minWeightMagnitude | `number` |  The minimum weight magnitude. |
 
-**Returns:** `Promise`.<`Trytes`[]>
+**Returns:** `Promise`<`Trytes`[]>
 The trytes produced by the proof of work.
 
 ___
-
 <a id="singlepow"></a>
 
 ###  singlePow
 
-▸ **singlePow**(trytes: *`Trytes`*, minWeightMagnitude: *`number`*): `Promise`.<`Trytes`>
+▸ **singlePow**(trytes: *`Trytes`*, minWeightMagnitude: *`number`*): `Promise`<`Trytes`>
 
 *Overrides ProofOfWorkBase.singlePow*
 
-*Defined in [proofOfWorkJs.ts:27](https://github.com/iota-pico/pow-js/blob/78d484a/src/proofOfWorkJs.ts#L27)*
+*Defined in [proofOfWorkJs.ts:27](https://github.com/iota-pico/pow-js/blob/ce7df08/src/proofOfWorkJs.ts#L27)*
 
 Perform a proof of work on a single item.
 
@@ -131,10 +131,10 @@ Perform a proof of work on a single item.
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| trytes | `Trytes`   |  The trytes to perform the pow on. |
-| minWeightMagnitude | `number`   |  The minimum weight magnitude. |
+| trytes | `Trytes` |  The trytes to perform the pow on. |
+| minWeightMagnitude | `number` |  The minimum weight magnitude. |
 
-**Returns:** `Promise`.<`Trytes`>
+**Returns:** `Promise`<`Trytes`>
 The trytes produced by the proof of work.
 
 ___

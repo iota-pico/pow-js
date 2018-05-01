@@ -24,15 +24,17 @@ PearlDiver implementation in plain JavaScript.
 
 <a id="constructor"></a>
 
-### ⊕ **new PearlDiver**(): [PearlDiver](pearldiver.md)
+###  constructor
 
-*Defined in [pearlDiver/pearlDiver.ts:32](https://github.com/iota-pico/pow-js/blob/78d484a/src/pearlDiver/pearlDiver.ts#L32)*
+⊕ **new PearlDiver**(): [PearlDiver](pearldiver.md)
+
+*Defined in [pearlDiver/pearlDiver.ts:32](https://github.com/iota-pico/pow-js/blob/ce7df08/src/pearlDiver/pearlDiver.ts#L32)*
 
 Create a new instance of PearlDiver.
 
 **Returns:** [PearlDiver](pearldiver.md)
 
----
+___
 
 ## Methods
 
@@ -42,7 +44,7 @@ Create a new instance of PearlDiver.
 
 ▸ **searchWithTrytes**(trytes: *`Trytes`*, minWeightMagnitude: *`number`*): `Trytes`
 
-*Defined in [pearlDiver/pearlDiver.ts:57](https://github.com/iota-pico/pow-js/blob/78d484a/src/pearlDiver/pearlDiver.ts#L57)*
+*Defined in [pearlDiver/pearlDiver.ts:57](https://github.com/iota-pico/pow-js/blob/ce7df08/src/pearlDiver/pearlDiver.ts#L57)*
 
 Perform a proof of work on the data.
 
@@ -50,8 +52,8 @@ Perform a proof of work on the data.
 
 | Param | Type | Description |
 | ------ | ------ | ------ |
-| trytes | `Trytes`   |  The trytes to perform the pow on. |
-| minWeightMagnitude | `number`   |  The minimum weight magnitude. |
+| trytes | `Trytes` |  The trytes to perform the pow on. |
+| minWeightMagnitude | `number` |  The minimum weight magnitude. |
 
 **Returns:** `Trytes`
 The trytes produced by the proof of work.

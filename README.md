@@ -1,5 +1,5 @@
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/https://github.com/iota-pico/pow-js/master/LICENSE) [![Build Status](https://travis-ci.org/https://github.com/iota-pico/pow-js.svg?branch=master)](https://travis-ci.org/https://github.com/iota-pico/pow-js) [![NSP Status](https://nodesecurity.io/orgs/https://github.com/iota-pico/projects/60177d5b-d3b9-45b8-97f7-0bf50a706c47/badge)](https://nodesecurity.io/orgs/https://github.com/iota-pico/projects/60177d5b-d3b9-45b8-97f7-0bf50a706c47)
-[![Coveralls](https://img.shields.io/coveralls/https://github.com/iota-pico/pow-js.svg)](https://coveralls.io/github/https://github.com/iota-pico/pow-js)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iota-pico/pow-js/master/LICENSE) [![Build Status](https://travis-ci.org/iota-pico/pow-js.svg?branch=master)](https://travis-ci.org/iota-pico/pow-js) [![NSP Status](https://nodesecurity.io/orgs/iota-pico/projects/60177d5b-d3b9-45b8-97f7-0bf50a706c47/badge)](https://nodesecurity.io/orgs/iota-pico/projects/60177d5b-d3b9-45b8-97f7-0bf50a706c47)
+[![Coveralls](https://img.shields.io/coveralls/iota-pico/pow-js.svg)](https://coveralls.io/github/iota-pico/pow-js)
 
 # IOTA Pico Framework Proof Of Work JavaScript
 
