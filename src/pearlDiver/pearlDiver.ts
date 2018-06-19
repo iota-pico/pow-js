@@ -1,7 +1,6 @@
 import { SpongeFactory } from "@iota-pico/crypto/dist/factories/spongeFactory";
 import { Trits } from "@iota-pico/data/dist/data/trits";
 import { Trytes } from "@iota-pico/data/dist/data/trytes";
-// tslint:disable-next-line:import-name
 import bigInt from "big-integer";
 import { PearlDiverSearchStates } from "./pearlDiverSearchStates";
 

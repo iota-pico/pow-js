@@ -14,11 +14,11 @@ export declare class PearlDiver {
      * @returns The trytes produced by the proof of work.
      */
     searchWithTrytes(trytes: Trytes, minWeightMagnitude: number): Trytes;
-    private search(searchStates, minWeightMagnitude);
-    private transform(searchStates);
-    private increment(searchStates, fromIndex, toIndex);
-    private prepare(transactionTrytes);
-    private searchInit(curlState);
-    private searchOffset(states, offset);
-    private isFoundFast(searchStates, minWeightMagnitude);
+    private search;
+    private transform;
+    private increment;
+    private prepare;
+    private searchInit;
+    private searchOffset;
+    private isFoundFast;
 }
