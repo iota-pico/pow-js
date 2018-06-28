@@ -42,7 +42,7 @@ ProofOfWork implementation using JavaScript.
 
 *Overrides ProofOfWorkBase.__constructor*
 
-*Defined in [proofOfWorkJs.ts:12](https://github.com/iota-pico/pow-js/blob/8f6b971/src/proofOfWorkJs.ts#L12)*
+*Defined in [proofOfWorkJs.ts:12](https://github.com/iota-pico/pow-js/tree/master/src/proofOfWorkJs.ts#L12*
 
 Create an instance of ProofOfWork.
 
@@ -123,7 +123,7 @@ ___
 
 *Overrides ProofOfWorkBase.singlePow*
 
-*Defined in [proofOfWorkJs.ts:27](https://github.com/iota-pico/pow-js/blob/8f6b971/src/proofOfWorkJs.ts#L27)*
+*Defined in [proofOfWorkJs.ts:27](https://github.com/iota-pico/pow-js/tree/master/src/proofOfWorkJs.ts#L27*
 
 Perform a proof of work on a single item.
 
