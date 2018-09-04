@@ -20,7 +20,7 @@
 
 ###  PearlDiverSearchStates
 
-**ΤPearlDiverSearchStates**: *`object`*
+**Ƭ PearlDiverSearchStates**: *`object`*
 
 *Defined in [pearlDiver/pearlDiverSearchStates.ts:7](https://github.com/iota-pico/pow-js/tree/master/src/pearlDiver/pearlDiverSearchStates.ts#L7*
 
