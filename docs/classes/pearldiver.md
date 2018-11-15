@@ -50,7 +50,7 @@ Perform a proof of work on the data.
 
 **Parameters:**
 
-| Param | Type | Description |
+| Name | Type | Description |
 | ------ | ------ | ------ |
 | trytes | `Trytes` |  The trytes to perform the pow on. |
 | minWeightMagnitude | `number` |  The minimum weight magnitude. |
